@@ -33,7 +33,7 @@ int main()
     getValuesFromFile(seat_prices, "seating_prices.txt");
 
     // Rest of the main function code...
-    // (This part interacts with the user and performs various actions based on menu choices)
+    // (interacts with the user and performs various actions based on menu choices)
     
     return 0;
 }
