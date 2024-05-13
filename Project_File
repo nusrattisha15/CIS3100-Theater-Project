@@ -1,0 +1,40 @@
+
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+const int ROWS = 15;
+const int COLUMNS = 30;
+
+void getValuesFromFile(double array[], string file_name)
+{
+    ifstream inputFile;
+
+    inputFile.open(file_name);
+    
+    if (inputFile.fail())
+    {
+        cout << "Error opening file. " << endl;
+        exit(EXIT_SUCCESS);
+    }
+    else
+    {
+        for(int row = 0; row < ROWS; row++)
+            inputFile >> array[row];
+
+    }
+    
+}
+
+int main()
+{
+    double seat_prices[ROWS];
+    getValuesFromFile(seat_prices, "seating_prices.txt");
+
+    // Rest of the main function code...
+    // (This part interacts with the user and performs various actions based on menu choices)
+    
+    return 0;
+}
+ 
