@@ -1,5 +1,3 @@
-
-
 #include <iostream>
 #include <fstream>
 using namespace std;
@@ -12,7 +10,7 @@ void getValuesFromFile(double array[], string file_name)
     ifstream inputFile;
 
     inputFile.open(file_name);
-    
+
     if (inputFile.fail())
     {
         cout << "Error opening file. " << endl;
@@ -20,21 +18,43 @@ void getValuesFromFile(double array[], string file_name)
     }
     else
     {
-        for(int row = 0; row < ROWS; row++)
+        for (int row = 0; row < ROWS; row++)
             inputFile >> array[row];
-
     }
-    
+}
+
+void getValuesFromFile(char array[][COLUMNS], string file_name)
+{
+    ifstream inputFile;
+
+    inputFile.open(file_name);
+
+    if (inputFile.fail())
+    {
+        cout << "Error opening file. " << endl;
+        exit(EXIT_SUCCESS);
+    }
+    else
+    {
+        for (int row = 0; row < ROWS; row++)
+        {
+            for (int column = 0; column < COLUMNS; column++)
+            {
+                inputFile >> array[row][column];
+            }
+        }
+    }
 }
 
 int main()
 {
     double seat_prices[ROWS];
-    getValuesFromFile(seat_prices, "seating_prices.txt");
+    char seating_chart[ROWS][COLUMNS];
 
-    // Rest of the main function code...
-    // (interacts with the user and performs various actions based on choices)
-    
+    getValuesFromFile(seat_prices, "seating_prices.txt");
+    getValuesFromFile(seating_chart, "seating_chart.txt");
+
+    // Now this should print them accordingly 
+
     return 0;
 }
- 
