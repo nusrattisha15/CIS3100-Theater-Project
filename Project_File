@@ -13,8 +13,9 @@ void getValuesFromFile(double array[], string file_name)
 
     if (inputFile.fail())
     {
-        cout << "Error opening file. " << endl;
-        exit(EXIT_SUCCESS);
+       cout << "Error opening file '" << file_name << "'. Please make sure the file exists.\n";
+        exit(EXIT_FAILURE); 
+        // EXIT_FAILURE to indicate a failure in file opening
     }
     else
     {
