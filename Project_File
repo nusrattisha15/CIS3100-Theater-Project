@@ -1,10 +1,12 @@
+
+
 #include <iostream>
 #include <fstream>
 using namespace std;
 
 const int ROWS = 15;
 const int COLUMNS = 30;
-
+         
 void getValuesFromFile(double array[], string file_name)
 {
     ifstream inputFile;
@@ -13,49 +15,38 @@ void getValuesFromFile(double array[], string file_name)
 
     if (inputFile.fail())
     {
-       cout << "Error opening file '" << file_name << "'. Please make sure the file exists.\n";
-        exit(EXIT_FAILURE); 
-        // EXIT_FAILURE to indicate a failure in file opening
-    }
-    else
-    {
-        for (int row = 0; row < ROWS; row++)
-            inputFile >> array[row];
-    }
-}
-
-void getValuesFromFile(char array[][COLUMNS], string file_name)
-{
-    ifstream inputFile;
-
-    inputFile.open(file_name);
-
-    if (inputFile.fail())
-    {
         cout << "Error opening file. " << endl;
-        exit(EXIT_SUCCESS);
+        exit(EXIT_FAILURE); // Use EXIT_FAILURE instead of EXIT_SUCCESS for failure cases
     }
     else
     {
-        for (int row = 0; row < ROWS; row++)
+        int row = 0;
+        double value;
+
+        // Read values from the file until EOF
+        while (row < ROWS && inputFile >> value)
         {
-            for (int column = 0; column < COLUMNS; column++)
-            {
-                inputFile >> array[row][column];
-            }
+            array[row++] = value;
+        }
+
+        // Check if the number of rows matches the expected ROWS
+        if (row != ROWS)
+        {
+            cout << "Error: Unexpected number of rows in the file." << endl;
+            exit(EXIT_FAILURE);
         }
     }
-}
 
+    // Close the file
+    inputFile.close();
+}
 int main()
 {
     double seat_prices[ROWS];
-    char seating_chart[ROWS][COLUMNS];
-
     getValuesFromFile(seat_prices, "seating_prices.txt");
-    getValuesFromFile(seating_chart, "seating_chart.txt");
 
-    // Now this should print them accordingly 
-
+    // Rest of the main function code...
+    // (interacts with the user and performs various actions based on choices)
+    
     return 0;
 }
